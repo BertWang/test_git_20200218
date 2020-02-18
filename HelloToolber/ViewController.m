@@ -78,6 +78,19 @@
     [sharedCondition unlock];
 }
 
+- (void) job3 {
+    [sharedCondition lock];
+    NSLog(@"Job2 strart.");
+    [NSThread sleepForTimeInterval:1];
+    
+    NSLog(@"Job2 wait.");
+    [sharedCondition wait];
+    
+    //Must wait Job1 finish
+    NSLog(@"Job2 end.");
+    [sharedCondition unlock];
+}
+
 
 - (void) doSometihg1:(NSInteger)threadIndex {
     
